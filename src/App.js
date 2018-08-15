@@ -9,11 +9,15 @@ class App extends Component {
         super();
 
         this.state = {
-            cities: [],
+            cities: [{
+                id: 1,
+                name: ''
+            }],
             show: false,
             timezone: 'Timezone',
             summary: 'Add a new city.',
-            weekly: []
+            weekly: [],
+            hourly: []
         };
     }
 
@@ -61,6 +65,7 @@ class App extends Component {
                 console.log(response.body.daily.data);
                 this.setState({
                     weekly: response.body.daily.data,
+                    hourly: response.body.hourly.data,
                     timezone: response.body.timezone,
                     summary: response.body.currently.summary
                 });
@@ -145,6 +150,32 @@ class App extends Component {
                                     );
                                 })}
                             </div>
+                            <h5>Hourly</h5>
+                            <table className=''>
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            { new Date().toLocaleString().split(',' [0]) }
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    { this.state.hourly.map((hour, index) =>{
+                                        return (
+                                        <tr>
+                                            <td>
+                                                <small>{ index + 1 }</small>
+                                                <strong> { new Date(hour.time * 1000).getHours() }:00</strong>,
+                                                { hour.temperature } ºF,
+                                                <em> { hour.summary.toLowerCase() }</em>,
+                                                 { hour.windSpeed } m/s,
+                                                 { hour.pressure }
+                                            </td>
+                                        </tr>
+                                        )
+                                    }) }
+                                </tbody>
+                            </table>
                         </div>
                     </section>
                 </div>

@@ -56,6 +56,7 @@
 
 .app__view {
   padding: 20px;
+  height: auto;
 }
 
 .grid {
@@ -90,4 +91,25 @@
 
 .day__press {
   color: gray;
+}
+
+table {
+  border: 0;
+  box-shadow: 1px 1px 1px rgba(90, 90, 90, 0.3);
+
+}
+
+table thead {
+  width: 400px;
+  background-color: #333;
+  color: white;
+}
+
+table td {
+  padding: 5px;
+  border-collapse: collapse;
+}
+
+table tr:nth-of-type(2n) {
+  background-color: #EAEAEA;
 }
